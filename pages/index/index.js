@@ -9,16 +9,16 @@ Page({
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     imgUrls: [{ "effective": ["'2018-09-14", "2019-09-14'"], "_id": "5b9b81e1cf091503da1ee7bf", "img_url": "file/banner/7rpNsE9SlRyIsnk3vIkKheXx.jpg", "href": "www.baidu.com", "name": "大蛋糕", "is_show": true, "__v": 0 }, { "effective": ["'2018-09-14", "2019-09-14'"], "_id": "5b9b81f1cf091503da1ee7c0", "img_url": "file/banner/2EoAQb61VB3BLcNZTz0Iu2zN.jpg", "href": "www.baidu.com", "name": "大蛋糕", "is_show": true, "__v": 0 }, { "effective": ["'2018-09-14", "2019-09-14'"], "_id": "5b9b81f5cf091503da1ee7c1", "img_url": "file/banner/PwVMGeMUvWkoglRfx6e9R_fH.jpg", "href": "www.baidu.com", "name": "大蛋糕", "is_show": true, "__v": 0 }],
-    baseUrl:"https://wx.yogalt.com/",
+    baseUrl: "https://wx.yogalt.com/",
     indicatorDots: true,
     autoplay: true,
     interval: 5000,
     duration: 1000,
-    list:[],
-    page:1
+    list: [],
+    page: 1
   },
   //事件处理函数
-  bindViewTap: function() {
+  bindViewTap: function () {
     wx.navigateTo({
       url: '../logs/logs'
     })
@@ -44,7 +44,7 @@ Page({
         }
       })
   },
-  imgsc:function(e){
+  imgsc: function (e) {
     wx.chooseImage({
       count: 1, // 默认9
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
@@ -61,10 +61,10 @@ Page({
             'accept': 'application/json',
           },
           formData: {
-            href:'www.baidu.com',           //跳转地址
-            name:'大蛋糕',           //名称
-            is_hide:true,       //是否显示
-            effective:'2018-09-14,2019-09-14',       //有效期
+            href: 'www.baidu.com',           //跳转地址
+            name: '大蛋糕',           //名称
+            is_hide: true,       //是否显示
+            effective: '2018-09-14,2019-09-14',       //有效期
           },
           success: function (res) {
             var data = res.data;
@@ -78,12 +78,12 @@ Page({
       }
     })
   },
-  lower:function(e){
+  lower: function (e) {
     console.log(e)
     this.getList()
   },
-  getList: function(){
-    app.http('v1/home/getHotList', { page: this.data.page})
+  getList: function () {
+    app.http('v1/home/getHotList', { page: this.data.page })
       .then(res => {
         if (res.code == 200 && res.data.list.length > 0) {
           this.data.page++
@@ -104,14 +104,14 @@ Page({
     this.getList()
 
     app.http('v1/home/bannerList')
-    .then(res=>{
-      console.log('v1/home/bannerList:', res)
-      if (res.data.length) {
-        this.setData({
-          imgUrls: res.data
-        })
-      }
-    })
+      .then(res => {
+        console.log('v1/home/bannerList:', res)
+        if (res.data.length) {
+          this.setData({
+            imgUrls: res.data
+          })
+        }
+      })
     // app.http('v1/admin/addCoupon',{
     //   name:'节日蛋糕满200减50',
     //   money:50,
@@ -123,7 +123,7 @@ Page({
     //   .then(res => {
     //    console.log(res)
     //   })
-    
+
     // wx.request({
     //   url: 'https://wx.yogalt.com/api/v1/admin/getClassList',
     //   success: (res) => {
@@ -169,13 +169,13 @@ Page({
     //     console.log(res.data)
     //   }
     // })
-    
+
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
         hasUserInfo: true
       })
-    } else if (this.data.canIUse){
+    } else if (this.data.canIUse) {
       // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
       // 所以此处加入 callback 以防止这种情况
       app.userInfoReadyCallback = res => {
@@ -217,7 +217,7 @@ Page({
       duration: e.detail.value
     })
   },
-  getUserInfo: function(e) {
+  getUserInfo: function (e) {
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
       userInfo: e.detail.userInfo,

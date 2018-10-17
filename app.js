@@ -48,7 +48,7 @@ App({
   },
   http: function (url, data = '', method = "GET") { //封装http请求
     // const apiUrl = 'https://wx.yogalt.com/api/' //请求域名
-    const apiUrl = 'http://10.13.49.49:8082/api/' //请求域名
+    const apiUrl = 'http://10.13.49.15:8082/api/' //请求域名
     console.log(this.globalData)
     const currency = {
       openid: this.globalData.openid
